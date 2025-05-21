@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2c38476d-bfa3-4c0f-b546-590560f83c4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conifg/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conifg/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conifg/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conifg/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conifg/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

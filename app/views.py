@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.sites.shortcuts import get_current_site
+from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
@@ -20,7 +22,7 @@ def index_view(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         email = request.POST['email']
@@ -41,6 +43,13 @@ def signup_view(request):
 
         if not username.isalnum():
             messages.error(request, 'Username should contain only letters and numbers.')
+            return redirect('signup')
+
+        try:
+            validate_password(password1)
+        except ValidationError as e:
+            for error in e:
+                messages.error(request, error)
             return redirect('signup')
 
         new_user = User.objects.create_user(username=username, email=email, password=password1)
@@ -66,11 +75,11 @@ def signup_view(request):
         email_msg.content_subtype = 'html'  # Send as HTML email
         email_msg.send(fail_silently=True)
 
-        link = f"http://{current_site.domain}" + reverse('activate', kwargs={
-            'uidb64': urlsafe_base64_encode(force_bytes(new_user.id)),
-            'token': generate_token.make_token(new_user)
-        })
-        print("🔗 Confirmation link:", link)
+        # link = f"http://{current_site.domain}" + reverse('activate', kwargs={
+        #     'uidb64': urlsafe_base64_encode(force_bytes(new_user.id)),
+        #     'token': generate_token.make_token(new_user)
+        # })
+        # print("🔗 Confirmation link:", link)
 
         messages.success(request, "We've sent you a confirmation email. Please verify your account.")
         return redirect('login')
