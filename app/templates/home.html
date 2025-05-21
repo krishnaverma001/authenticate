@@ -20,8 +20,9 @@
     <nav>
         <a href="{% url 'index' %}">Authenticate</a>
         <div>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user.is_active %}
                 <a href="{% url 'logout' %}">Logout</a>
+
             {% else %}
                 <a href="{% url 'signup' %}">Sign Up</a>
                 <a href="{% url 'login' %}">Login</a>
@@ -49,5 +50,16 @@
     <footer>
         <p>&copy; {% now "Y" %} User authentication. All rights reserved.</p>
     </footer>
+
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.toast').forEach(t => {
+            t.style.transition = "opacity 0.5s ease";
+            t.style.opacity = "0";
+            setTimeout(() => t.remove(), 500);                  // Remove after fade
+            });
+        }, 5000);
+    </script>
+
 </body>
 </html>
