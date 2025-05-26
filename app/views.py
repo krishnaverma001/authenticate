@@ -112,12 +112,16 @@ def login_view(request):
 
         user = authenticate(username=u, password=p)
 
-        if user:
-            login(request, user)
-            messages.success(request, 'You have logged in successfully.')
-            return render(request, 'index.html', {'name': user.first_name})
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                messages.success(request, 'Logged in successfully.')
+                return render(request, 'index.html', {'name': user.first_name})
+            else:
+                messages.error(request, 'Your account is not activated. Please check your email.')
+                return redirect('login')
         else:
-            messages.error(request, 'Invalid username or password. Please try again.')
+            messages.error(request, 'Invalid username or password.')
             return redirect('login')
 
     return render(request, 'login.html')
